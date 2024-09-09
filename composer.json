@@ -1,5 +1,5 @@
 {
-    "name": "symfony/firebase-notifier",
+    "name": "baron-suslin/firebase-notifier",
     "type": "symfony-notifier-bridge",
     "description": "Symfony Firebase Notifier Bridge",
     "keywords": ["firebase", "notifier"],
@@ -16,9 +16,10 @@
         }
     ],
     "require": {
-        "php": ">=8.2",
-        "symfony/http-client": "^6.4|^7.0",
-        "symfony/notifier": "^6.4|^7.0"
+        "php": ">=8.1",
+        "ext-openssl": "*",
+        "symfony/http-client": "^5.4|^6.0|^7.0",
+        "symfony/notifier": "^6.2.7|^7.0"
     },
     "autoload": {
         "psr-4": { "Symfony\\Component\\Notifier\\Bridge\\Firebase\\": "" },
