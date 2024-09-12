@@ -114,7 +114,7 @@ final class FirebaseTransport extends AbstractTransport
 
         $header = $this->urlSafeEncode(['alg' => 'RS256', 'typ' => 'JWT']);
         $payload = $this->urlSafeEncode($payload);
-        openssl_sign($header . '.' . $payload, $signature, openssl_pkey_get_private($this->encodePk($this->credentials['private_key'])), OPENSSL_ALGO_SHA256);
+        openssl_sign($header . '.' . $payload, $signature, openssl_pkey_get_private($this->credentials['private_key']), OPENSSL_ALGO_SHA256);
         $signature = $this->urlSafeEncode($signature);
 
         return $header . '.' . $payload . '.' . $signature;
@@ -127,13 +127,5 @@ final class FirebaseTransport extends AbstractTransport
         }
 
         return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
-    }
-
-    protected function encodePk(string $privateKey): string
-    {
-        $text = explode('-----', $privateKey);
-        $text[2] = str_replace(['\n', '_', ' '], ["\n", "\n", '+'], $text[2]);
-
-        return implode('-----', $text);
     }
 }
