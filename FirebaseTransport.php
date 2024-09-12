@@ -68,7 +68,7 @@ final class FirebaseTransport extends AbstractTransport
 
         // Send
         $response = $this->client->request('POST', $endpoint, [
-            'headers' => ['Authorization' => sprintf('key=%s', $this->getJwtToken()),],
+            'headers' => ['Authorization' => sprintf('Bearer %s', $this->getJwtToken()),],
             'json' => array_filter(['message' => $options]),
         ]);
 
