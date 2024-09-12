@@ -29,10 +29,9 @@ final class FirebaseTransportFactory extends AbstractTransportFactory
             throw new UnsupportedSchemeException($dsn, 'firebase', $this->getSupportedSchemes());
         }
 
-        $credentials = [
+        $credentials = array_merge([
             'client_email' => sprintf('%s@%s', $dsn->getUser(), $dsn->getHost()),
-            ...$dsn->getOptions()
-        ];
+        ], $dsn->getOptions());
 
         $requiredParameters = array_diff(array_keys($credentials), ['client_email', 'project_id', 'private_key_id', 'private_key']);
         if ($requiredParameters) {
